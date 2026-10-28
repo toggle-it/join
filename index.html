@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Join the Toggle beta</title>
+<meta name="description" content="Toggle is a social habit tracker. Think Strava, but for everyday habits. Get the iPhone beta.">
+<meta property="og:title" content="Join the Toggle beta">
+<meta property="og:description" content="Strava, for everyday habits. Get the iPhone beta.">
+<meta property="og:image" content="https://toggle-it.github.io/join/icon.png">
+<meta name="theme-color" content="#2b56e2">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2b56e2;
+    --blue-dark: #1f44c4;
+    --ink: #0f172a;
+    --ink-2: #475569;
+    --muted: #94a3b8;
+    --bg: #f0f4ff;
+    --card: #ffffff;
+    --line: #e2e8f0;
+    --ok: #16a34a;
+    --err: #dc2626;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
+  }
+  .hero {
+    background: var(--blue);
+    color: #fff;
+    padding: calc(28px + env(safe-area-inset-top)) 20px 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    /* oversized switch track, echoing the logo */
+    content: "";
+    position: absolute;
+    right: -90px; top: -40px;
+    width: 300px; height: 140px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+  }
+  .wrap { max-width: 440px; margin: 0 auto; position: relative; z-index: 1; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 0 0 1.5px rgba(255,255,255,0.35); }
+  h1 {
+    font-size: clamp(34px, 10vw, 44px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin: 36px 0 14px;
+  }
+  .lede { font-size: 17px; line-height: 1.5; color: rgba(255,255,255,0.86); margin: 0; max-width: 34ch; }
+
+  main { padding: 0 16px calc(32px + env(safe-area-inset-bottom)); }
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 22px 20px 20px;
+    margin-top: -60px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15,23,42,0.06);
+  }
+
+  /* demo habit rows */
+  .demo { display: grid; gap: 10px; margin-bottom: 22px; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; }
+  .row .emoji { font-size: 22px; width: 28px; text-align: center; }
+  .row .txt { flex: 1; min-width: 0; }
+  .row .name { font-weight: 600; font-size: 15px; }
+  .row .meta { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
+  .sw { width: 46px; height: 28px; border-radius: 999px; background: var(--line); position: relative; flex: none; transition: background .25s; }
+  .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); transition: transform .25s; }
+  .sw.on { background: var(--blue); }
+  .sw.on::after { transform: translateX(18px); }
+
+  label.l { display: block; font-weight: 600; font-size: 15px; margin-bottom: 8px; }
+  input[type=email] {
+    width: 100%;
+    font: inherit; font-size: 17px; /* 16+ stops iOS zoom */
+    padding: 14px 14px;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    background: #fff; color: var(--ink);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  input[type=email]:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(43,86,226,.14); }
+  input[aria-invalid=true] { border-color: var(--err); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  button, .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
+    margin-top: 12px;
+    font: inherit; font-size: 17px; font-weight: 700;
+    padding: 15px 16px;
+    border: 0; border-radius: 12px;
+    background: var(--blue); color: #fff;
+    cursor: pointer; text-decoration: none;
+    transition: background .15s, transform .05s;
+  }
+  button:hover, .btn:hover { background: var(--blue-dark); }
+  button:active, .btn:active { transform: scale(0.99); }
+  button[disabled] { opacity: .7; cursor: progress; }
+  .btn.ghost { background: var(--bg); color: var(--blue); }
+  .msg { font-size: 14px; margin: 10px 0 0; min-height: 1.2em; color: var(--err); }
+  .fine { font-size: 13px; line-height: 1.5; color: var(--ink-2); margin: 14px 0 0; }
+  .fine a { color: var(--ink-2); }
+
+  .done { display: none; text-align: left; }
+  .done.show { display: block; }
+  .check { width: 48px; height: 48px; border-radius: 50%; background: #dcfce7; color: var(--ok); display: grid; place-items: center; font-size: 26px; margin-bottom: 14px; }
+  .done h2 { font-size: 22px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .done p { margin: 0 0 6px; color: var(--ink-2); line-height: 1.5; font-size: 15px; }
+  ol.steps { padding-left: 20px; margin: 14px 0 4px; color: var(--ink); line-height: 1.55; font-size: 15px; }
+  ol.steps li { margin-bottom: 6px; }
+  ol.steps a { color: var(--blue); font-weight: 600; }
+
+  .how { margin-top: 26px; padding: 0 4px; }
+  .how h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin: 0 0 12px; }
+  .how .item { display: flex; gap: 12px; margin-bottom: 14px; }
+  .how .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #dbe4ff; color: var(--blue); font-weight: 700; font-size: 13px; display: grid; place-items: center; }
+  .how p { margin: 2px 0 0; font-size: 15px; line-height: 1.45; }
+  .how b { font-weight: 600; }
+  footer { text-align: center; font-size: 12px; color: var(--muted); margin-top: 28px; }
+  footer a { color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { .sw, .sw::after { transition: none; } }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="brand"><img src="icon.png" alt="" width="36" height="36">Toggle</div>
+      <h1>Strava, for everyday habits.</h1>
+      <p class="lede">Toggle a habit when it's done. Your friends see it, boost you when you show up, and nudge you when you don't.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="card" aria-live="polite">
+        <div id="form-view">
+          <div class="demo" aria-hidden="true">
+            <div class="row"><div class="emoji">📚</div><div class="txt"><div class="name">Study 1 hour</div><div class="meta">🔥 6 in a row · ⚡ 3 boosts</div></div><div class="sw on" id="sw1"></div></div>
+            <div class="row"><div class="emoji">🏋️</div><div class="txt"><div class="name">Gym</div><div class="meta">Maya nudged you</div></div><div class="sw" id="sw2"></div></div>
+          </div>
+
+          <form id="f" novalidate>
+            <label class="l" for="email">Get the iPhone beta</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@wm.edu" required>
+            <div class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+            <button id="go" type="submit">Send me the invite</button>
+            <p class="msg" id="msg" role="alert"></p>
+          </form>
+          <p class="fine">We'll email you the TestFlight link. Your email is only used for the Toggle beta, and never shared. <a href="https://toggle-it.github.io/toggle-privacy/">Privacy policy</a></p>
+        </div>
+
+        <div class="done" id="done-view">
+          <div class="check">✓</div>
+          <h2 id="done-title">Check your inbox</h2>
+          <p id="done-sub">We sent the invite to <b id="done-email"></b>. It can take a minute, and it might land in spam.</p>
+          <ol class="steps">
+            <li>Install <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a> from the App Store.</li>
+            <li>On your iPhone, open the link and tap <b>Accept</b>, then <b>Install</b>.</li>
+          </ol>
+          <a class="btn" id="tf" href="https://testflight.apple.com/join/tpb6yuEy">Open the beta now</a>
+          <a class="btn ghost" href="https://apps.apple.com/app/testflight/id899247664">Get TestFlight first</a>
+        </div>
+      </section>
+
+      <section class="how">
+        <h3>How it works</h3>
+        <div class="item"><div class="n">1</div><p><b>Pick a habit.</b> Studying, the gym, reading, calling home. Toggle it when it's done.</p></div>
+        <div class="item"><div class="n">2</div><p><b>Your mutuals see it.</b> Only people you both follow, never the whole school. Any habit can be private.</p></div>
+        <div class="item"><div class="n">3</div><p><b>Boost and nudge.</b> Cheer friends on when they show up, give them a poke when they don't.</p></div>
+      </section>
+
+      <footer>Made at William &amp; Mary · <a href="mailto:lets.toggle.it@gmail.com">lets.toggle.it@gmail.com</a></footer>
+    </div>
+  </main>
+
+<script>
+  // ── config ────────────────────────────────────────────────
+  var ENDPOINT = 'https://dajtazlanumyiyglpiza.supabase.co/functions/v1/beta-signup';
+  // ──────────────────────────────────────────────────────────
+
+  var params = new URLSearchParams(location.search);
+  var source = (params.get('src') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40);
+
+  // little toggle animation
+  var sw2 = document.getElementById('sw2');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setTimeout(function () { sw2.classList.add('on'); }, 1200);
+  }
+
+  var f = document.getElementById('f');
+  var input = document.getElementById('email');
+  var btn = document.getElementById('go');
+  var msg = document.getElementById('msg');
+  var EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[a-z]{2,}$/i;
+
+  function showDone(email, emailed) {
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById('done-email').textContent = email;
+    if (!emailed) {
+      document.getElementById('done-title').textContent = "You're on the list";
+      document.getElementById('done-sub').textContent = "Here's your link. Open it on your iPhone.";
+    }
+    var d = document.getElementById('done-view');
+    d.classList.add('show');
+    d.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  input.addEventListener('input', function () { input.removeAttribute('aria-invalid'); msg.textContent = ''; });
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = input.value.trim();
+    if (!EMAIL_RE.test(email)) {
+      input.setAttribute('aria-invalid', 'true');
+      msg.textContent = 'That email doesn’t look right.';
+      input.focus();
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    msg.textContent = '';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: source || null, website: f.website.value })
+    })
+      .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
+      .then(function (res) {
+        if (res.status === 200 && res.body.ok) {
+          if (res.body.testflight_url) document.getElementById('tf').href = res.body.testflight_url;
+          showDone(email, res.body.emailed !== false);
+          return;
+        }
+        if (res.body && res.body.error === 'invalid_email') msg.textContent = 'That email doesn’t look right.';
+        else if (res.status === 429) msg.textContent = 'Lots of signups from this network. Try again in a few minutes.';
+        else msg.textContent = 'Something went wrong. Try again?';
+        btn.disabled = false; btn.textContent = 'Send me the invite';
+      })
+      .catch(function () {
+        msg.textContent = 'Couldn’t connect. Check your signal and try again.';
+        btn.disabled = false; btn.textContent = 'Send me the invite';
+      });
+  });
+</script>
+</body>
+</html>
